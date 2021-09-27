@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'fundraisers');
+
+Route::view('/fundraisers-review-form/{id}', 'fundraisersform');
+
+Route::get('/verify-email-send',[ReviewerController::class, 'SendValidationEmail']);

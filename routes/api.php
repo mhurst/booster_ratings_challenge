@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('fundraisers', [App\Http\Controllers\FundraiserController::class, 'index']);
+Route::post('fundraisers', [App\Http\Controllers\FundraiserController::class, 'store']);
+
+Route::get('ratings-by-fundraiser/{fundraiser_id}', [App\Http\Controllers\RatingController::class, 'showByFundraiser']);
+Route::post('ratings', [App\Http\Controllers\RatingController::class, 'store']);
