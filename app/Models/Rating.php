@@ -38,14 +38,4 @@ class Rating extends Model
 
         return $fundraisers;
     }
-
-    public static function HasUserAlreadyReviewedFundraiser($reviewer_id, $fundraiser_id)
-    {
-        if (Rating::where([['fundraisers_id', '=', $fundraiser_id],
-                ['reviewer_id','=', $reviewer_id]])->exists()) {
-            return true;
-        }
-
-        return false;
-    }
 }

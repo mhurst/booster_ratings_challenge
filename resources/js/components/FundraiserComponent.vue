@@ -59,15 +59,6 @@
 				
 				return stars;
 			},
-
-            reload() {
-		      this.$forceUpdate();
-		    },
-
-		    goToRoute(param1) {
-	            let route = '{{ route("fundraisers-review-form", ["id" => "?anytagtoreplace?"]) }}'
- 			    location.href = route.replace('?anytagtoreplace?', param1) 
-			}
 		},
 	}
 </script>

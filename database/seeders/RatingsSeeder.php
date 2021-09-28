@@ -15,7 +15,7 @@ class RatingsSeeder extends Seeder
     public function run()
     {
         DB::table('ratings')->insert([
-            'fundraiser_id' => 6,
+            'fundraiser_id' => 1,
             'reviewer_id' => 1,
             'rating' => 5,
             'review' => 'My review',

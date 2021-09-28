@@ -61,7 +61,7 @@ class RatingController extends Controller
             }
 
             //If reviewer has already reviewed this fundraiser
-            if (Rating::HasUserAlreadyReviewedFundraiser($reviewer_id, $request->fundraisers_id)) {
+            if (Reviewer::HasUserAlreadyReviewedFundraiser($reviewer_id, $request->fundraisers_id)) {
                 return response()->json(['error' => 'This reviewer has already reviewed this fundraiser'], 422);
             }
         } else {
