@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Ratings;
+use App\Models\Fundraiser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class RatingsFactory extends Factory
+class FundraisersFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Ratings::class;
+    protected $model = Fundraiser::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class RatingsFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => 'Test Fundraiser'
         ];
     }
 }

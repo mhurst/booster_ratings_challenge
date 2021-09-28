@@ -33,6 +33,7 @@ class Rating extends Model
                         ')
                         ->leftjoin('reviewers', 'reviewers.id', '=', 'ratings.reviewer_id')
                         ->where('fundraisers_id', '=', $id)
+                        ->where('reviewers.email_verified', '=', '1')
                         ->get();
 
         return $fundraisers;

@@ -49,36 +49,32 @@ class RatingController extends Controller
         }
 
         //Check if reviewer exist
-        $reviewer_id = Reviewer::DoesReviewerExist($request->email, $request->fundraiser_id);
+        $reviewer_id_exists = Reviewer::DoesReviewerExist($request->email, $request->fundraiser_id);
 
-        if ($reviewer_id) {
+        if ($reviewer_id_exists) {
+            $reviewer = Reviewer::where('email', '=', $request->email)->get();
+            $reviewer_id = $reviewer[0]->id;
+
+            if (!$reviewer->email_verified) {
+                //Validate email via email
+                Reviewer::SendValidationEmail($request->email);
+            }
+
             //If reviewer has already reviewed this fundraiser
-            if (Rating::HasUserAlreadyReviewedFundraiser($reviewer_id, $request->fundraiser_id)) {
+            if (Rating::HasUserAlreadyReviewedFundraiser($reviewer_id, $request->fundraisers_id)) {
                 return response()->json(['error' => 'This reviewer has already reviewed this fundraiser'], 422);
             }
-        }
-        
-
-        //Check if email has been validated
-        if (!Reviewer::CheckIfReviewerIsValidated($request->email)) {
-            return response()->json(['error' => 'This reviewer needs to be validated'], 422);
-        }
-
-        //todo email system not sending, being blocked by google,. fix.
-        //Validate email via email
-
-         //Reviewer::SendValidationEmail();
-
-        //If all else is good,. process the insert
-        if (!$reviewer_id) {
+        } else {
             $reviewer = Reviewer::Create([
                 'name' => $request->name,
                 'email' => $request->email
             ]);
 
             $reviewer_id = $reviewer->id;
-        }
 
+            //Validate email via email
+            Reviewer::SendValidationEmail($request->email);
+        }
 
         Rating::Create([
             'fundraisers_id' => $request->fundraisers_id,

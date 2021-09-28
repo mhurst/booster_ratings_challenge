@@ -21,15 +21,11 @@ window.Vue = require('vue').default;
 
 Vue.component('fundraisers-list', require('./components/FundraiserComponent.vue').default);
 
-Vue.component('fundraisers-review-add-form', require('./components/FundraiserRatingFormComponent.vue').default);
+Vue.component('fundraisers-reviews', require('./components/FundraiserReviewsComponent.vue').default);
 
 Vue.component('fundraisers-add-form', require('./components/FundraiserAddFormComponent.vue').default);
 
-
-// const router = new VueRouter({
-//     mode: 'history',
-//     routes: routes
-// });
+Vue.component('fundraisers-review-add-form', require('./components/FundraisersReviewAddFormComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

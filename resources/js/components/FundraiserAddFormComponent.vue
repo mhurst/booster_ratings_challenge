@@ -1,8 +1,8 @@
 <template>
 	<div class="rating-form-container">
-		<h3 class="text-center">Add Fundraiser</h3>
+		<h3>Add Fundraiser</h3>
         <div class="row">
-            <div class="col-md-6">
+            <div>
                 <form @submit.prevent="addFundraiser">
                     <div class="form-group">
                         <label>Name</label>
@@ -26,7 +26,6 @@
             return {
                 post: {},
                 errors: [],
-    			name: null,
             }
         },
         methods: {
@@ -37,8 +36,7 @@
 					    window.location.reload();
 					  })
 					  .catch((error) => {
-					  console.log(error);
-					  	this.errors.push(error);
+					  	this.errors.push(error.response.data.error);
 					  })
 	            }
 
@@ -51,3 +49,22 @@
         }
     }
 </script>
+
+<style>
+	.rating-form-container {
+		width: 100%;
+		background-color: #efefef;
+		padding: 16px;
+		text-align: left;
+		margin-bottom: 32px;
+		border: 1px solid #999;
+	}
+
+	.rating-form-container form label {
+		padding-bottom: 8px;
+	}
+
+	.rating-form-container form input {
+		margin-bottom: 8px;
+	}
+</style>

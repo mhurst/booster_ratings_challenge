@@ -2,6 +2,6 @@
 
 @section('content')
 <div id="app">
-	<fundraisers-review-add-form></fundraisers-review-add-form>
+	<fundraisers-reviews></fundraisers-reviews>
 </div>
 @endsection

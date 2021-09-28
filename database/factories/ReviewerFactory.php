@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Fundraisers;
+use App\Models\Reviewer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class FundraisersFactory extends Factory
+class ReviewersFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Fundraisers::class;
+    protected $model = Reviewer::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,9 @@ class FundraisersFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => 'Tom Test',
+            'email' => 'tom@gmail.com,'
+            'email_verified' => true
         ];
     }
 }

@@ -5,9 +5,9 @@
 		</div>
 		<ul class="list-inline">
 			<div v-for="fundraiser in fundraisers" :key="fundraiser.fundraiser_id">
-				<li class="list-inline-item">{{ fundraiser.fundraiser_name }}
+				<li class="list-inline-item name">{{ fundraiser.fundraiser_name }}
 					<ul>
-						<li>Rating: {{ ratingAlter(fundraiser.average_rating) }}</li>
+						<li>Rating: <span class="rating">{{ ratingAlter(fundraiser.average_rating) }}</span></li>
 						<li><a :href="'/fundraisers-review-form/' + fundraiser.fundraiser_id">Add Review</a></li>
 					</ul>
 				</li>
@@ -53,10 +53,10 @@
 					return 'No rating yet';
 				}
 
-				for (let i = 1; i < rating; i++) {
+				for (let i = 0; i < rating; i++) {
 					stars += '* ';
 				}
-
+				
 				return stars;
 			},
 
@@ -71,3 +71,46 @@
 		},
 	}
 </script>
+
+<style>
+	.fund-list-cont {
+		width: 100%;
+		max-width: 800px;
+		text-align: left;
+		margin: 0 auto;
+	}
+
+	.fund-list-cont .heading {
+		padding-bottom: 20px;
+	}
+
+	.fund-list-cont ul li {
+		padding-bottom: 10px;	
+	}
+
+	.fund-list-cont ul li.name {
+		font-weight: bold;
+	}
+
+	.fund-list-cont ul li .rating {
+		color: #ffc125;
+		font-weight: bold;
+		font-size: 24px;
+	}
+
+	.fund-list-cont ul li ul li {
+		font-weight: normal;
+		list-style-type: none;
+	}
+
+	.fund-list-cont ul li ul li a {
+		display: block;
+		padding: 2px;
+		background-color: green;
+		text-align: center;
+		color: #fff;
+		text-decoration: none;
+		border-radius: 4px;
+		width: 200px;
+	}
+</style>

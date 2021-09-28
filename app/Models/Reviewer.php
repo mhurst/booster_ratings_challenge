@@ -11,6 +11,8 @@ class Reviewer extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'email'];
+
     /**
      * Get the ratings for a reviewer.
      */
@@ -43,8 +45,28 @@ class Reviewer extends Model
         return false;
     }
 
-    public static function SendValidationEmail()
+    public static function SendValidationEmail($email)
     {
-        Mail::to('piznac@gmail.com')->send(new VerifyMail());
+        Mail::to($email)->send(new VerifyMail($email));
+    }
+
+    public function checkVerification($token, $email)
+    {
+        if (Reviewer::where([['email', '=', $email],
+                ['verification_token','=', $token]])->exists()) {
+            
+            Reviewer::where('email', '=', $email)->update(["verification_token" => '']);
+
+            Reviewer::where('email', '=', $email)->update(["email_verified" => true]);
+
+            $message = 'Success! Your review is now visible.';
+
+            return $message;
+        }
+
+        $message = 'Something went wrong.';
+
+        return $message;
+
     }
 }

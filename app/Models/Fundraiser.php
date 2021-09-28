@@ -31,6 +31,7 @@ class Fundraiser extends Model
                             Round(Avg(ratings.rating)) as average_rating
                         ')
                         ->leftjoin('ratings', 'fundraisers.id', '=', 'ratings.fundraisers_id')
+                        ->leftjoin('reviewers', 'ratings.reviewer_id', '=', 'reviewers.id')
                         ->groupBy('fundraisers.name')
                         ->orderBy('average_rating', 'desc')
                         ->get();

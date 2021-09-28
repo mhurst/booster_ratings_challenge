@@ -17,4 +17,6 @@ Route::view('/', 'fundraisers');
 
 Route::view('/fundraisers-review-form/{id}', 'fundraisersform');
 
-Route::get('/verify-email-send',[ReviewerController::class, 'SendValidationEmail']);
+// Route::get('/verify-email-send',[ReviewerController::class, 'SendValidationEmail']);
+
+route::get('/verify-email/{token}/{email}',[App\Http\Controllers\ReviewerController::class, 'verifyToken']);
