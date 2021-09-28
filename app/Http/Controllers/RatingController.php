@@ -55,7 +55,7 @@ class RatingController extends Controller
             $reviewer = Reviewer::where('email', '=', $request->email)->get();
             $reviewer_id = $reviewer[0]->id;
 
-            if (!$reviewer->email_verified) {
+            if (!$reviewer[0]->email_verified) {
                 //Validate email via email
                 Reviewer::SendValidationEmail($request->email);
             }
